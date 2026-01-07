@@ -68,6 +68,57 @@ class Solution {
 
 
 
+2.
+// ni samjhaaaa
+class Solution {
+
+    // Mod value (question me diya hota hai)
+    static final long MOD = 1000000007;
+
+    public int countGoodNumbers(long n) {
+
+        // even index positions count
+        // example n=5 → indexes: 0 1 2 3 4 → even = 3
+        long evenCount = (n + 1) / 2;
+
+        // odd index positions count
+        long oddCount = n / 2;
+
+        // total ways:
+        // even index → 5 choices
+        // odd index → 4 choices
+        long evenWays = power(5, evenCount);
+        long oddWays = power(4, oddCount);
+
+        // final answer
+        long ans = (evenWays * oddWays) % MOD;
+
+        return (int) ans;
+    }
+
+    // fast power function (important part)
+    private long power(long base, long exp) {
+
+        long result = 1;
+
+        while (exp > 0) {
+
+            // if exp is odd
+            if (exp % 2 == 1) {
+                result = (result * base) % MOD;
+            }
+
+            // base square
+            base = (base * base) % MOD;
+
+            // exp half
+            exp = exp / 2;
+        }
+
+        return result;
+    }
+}
+
 
 
 
